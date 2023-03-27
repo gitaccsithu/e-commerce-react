@@ -1,12 +1,14 @@
+import SignUp from "../../component/signup/signup.component";
 import { createUserDocFromAuth, signInWithGooglePopUp } from "../../utils/firebase/firebase.util";
 
-const logGoogleUser = async () => {
-    const {user} = await signInWithGooglePopUp();
-    console.log("this is user ", user.uid);
-    const userDocRef = await createUserDocFromAuth(user);
-}
-
 const SignIn = () => {
+    const logGoogleUser = async () => {
+        const {user} = await signInWithGooglePopUp();
+        console.log("this is user ", user.uid);
+        const userDocRef = await createUserDocFromAuth(user);
+        console.log("this is user document reference", userDocRef);
+    }
+
     return (
         <div>
             <h1>
@@ -15,6 +17,7 @@ const SignIn = () => {
             <button onClick={logGoogleUser}>
                 Sign in with Google PopUp
             </button>
+            <SignUp/>
         </div>
     )
 }
