@@ -1,7 +1,14 @@
+import { useContext } from "react";
+import { userContext } from "../../component/contexts/user.context";
+import SignIn from "../../component/signin/signin.component";
 import SignUp from "../../component/signup/signup.component";
 import { createUserDocFromAuth, signInWithGooglePopUp } from "../../utils/firebase/firebase.util";
+import './authentication.styles.scss'
 
-const SignIn = () => {
+const Authentication = () => {
+    const user = useContext(userContext);
+    console.log("This is user context, ", user);
+    
     const logGoogleUser = async () => {
         const {user} = await signInWithGooglePopUp();
         console.log("this is user ", user.uid);
@@ -10,16 +17,11 @@ const SignIn = () => {
     }
 
     return (
-        <div>
-            <h1>
-                Hello I am sign-in page
-            </h1>
-            <button onClick={logGoogleUser}>
-                Sign in with Google PopUp
-            </button>
+        <div className="signin-page-container">
+            <SignIn/>
             <SignUp/>
         </div>
     )
 }
 
-export default SignIn;
+export default Authentication;
